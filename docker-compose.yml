@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+ api:
+    build: ./
+    ports:
+      - "8308:8308"
+    restart: always
+    volumes:
+      - ./temp:/temp

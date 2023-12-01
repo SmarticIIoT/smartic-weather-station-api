@@ -1,0 +1,27 @@
+{
+	"name": "smartic-weather-station-api",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"start": "node .",
+		"test": "npx jest --runInBand"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"axios": "^1.4.0",
+		"cors": "^2.8.5",
+		"cron": "^2.4.0",
+		"dotenv": "^16.3.1",
+		"express": "^4.18.2",
+		"ftp": "^0.3.10",
+		"joi": "^17.9.2",
+		"luxon": "^3.3.0",
+		"mongoose": "^7.4.2",
+		"morgan": "^1.10.0",
+		"xlsx": "^0.18.5",
+		"xml2js": "^0.6.2"
+	}
+}
