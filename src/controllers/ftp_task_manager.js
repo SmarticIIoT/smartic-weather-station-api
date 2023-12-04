@@ -6,6 +6,7 @@ const xlsx_air_quality = require('../repositories/xlsx_air_quality')
 const xlsx_air_quality_kits = require('../repositories/xlsx_air_quality_kits')
 const xlsx_water_quality = require('../repositories/xlsx_water_quality')
 const xlsx_process_data = require('../repositories/xlsx_process_data')
+const xlsx_kunak_data = require('../repositories/xlsx_kunak_data')
 const config = require('../config/app')
 
 function getFiles() {
@@ -116,6 +117,20 @@ async function setXlsxWaterQualityData() {
   if (detailsToSave.length) await xlsx_process_data.saveDetails(detailsToSave)
 }
 
+// Estos son los datos de los Kunak
+async function setXlsxKunakData() {
+  const tempDirectoryName = xlsx_kunak_data.tempDirectoryName
+  const staions = xlsx_kunak_data.stationIds()
+  const fieldRanges = xlsx_kunak_data.getFieldRanges()
+
+  const files = xlsx_process_data.getFileNames(tempDirectoryName)
+  let detailsToSave = xlsx_process_data.getXlsxData(files, staions, fieldRanges, tempDirectoryName)
+  detailsToSave = xlsx_process_data.orderDetails(detailsToSave)
+  detailsToSave = xlsx_process_data.verifyDetails(detailsToSave, fieldRanges)
+  detailsToSave = await xlsx_process_data.verifyUrbagisRecords(detailsToSave, staions)
+  if (detailsToSave.length) await xlsx_process_data.saveDetails(detailsToSave)
+}
+
 async function createIdFiles() {
   const staions = xlsx_water_quality.stationIds()
   const minDate = '2023-11-19T00:00:00'
@@ -131,5 +146,6 @@ module.exports = {
   setXlsxAirDavisData,
   setXlsxAirKitsData,
   setXlsxWaterQualityData,
-  createIdFiles
+  createIdFiles,
+  setXlsxKunakData
 }
