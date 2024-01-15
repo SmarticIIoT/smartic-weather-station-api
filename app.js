@@ -20,6 +20,6 @@ app.use((err, req, res, next) => {
 	res.status(err.status).json(err)
 })
 
-ftp_urbagisCtrl.setXlsxWaterQualityData()
+ftp_urbagisCtrl.setXlsxAirKitsData()
 
 module.exports = app

@@ -22,7 +22,7 @@ function getXlsxData(files, staions, fieldRanges, tempDirectoryName) {
         const sheetName = workbook.SheetNames[0]
         const worksheet = workbook.Sheets[sheetName]
         const data = XLSX.utils.sheet_to_json(worksheet)
-      
+        
         for (const obj of data) {
           detail = {}
           let field
